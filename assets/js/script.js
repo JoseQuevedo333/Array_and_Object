@@ -147,22 +147,155 @@ const propiedades_venta = [
   },
 ];
 
-const alquiler = document.querySelector(".propiedades-alquiler");
+const alquiler = document.querySelector("#propiedades-alquiler");
 
-for (let card_alquiler of alquiler) {
-  alquiler.innerHTML = `<article class="card">
-    <img src="${propiedades_alquiler[0].src}" alt="${
-    propiedades_alquiler[0].nombre
-  }">
-    <h2>${propiedades_alquiler[0].nombre}</h2>
-    <p>${propiedades_alquiler[0].descripcion}</p>
-    <p>${propiedades_alquiler[0].ubicacion}</p>
-    <p>Habitaciones: ${propiedades_alquiler[0].habitaciones}</p>
-    <p>Baños: ${propiedades_alquiler[0].baños}</p>
-    <p>Costo: $${propiedades_alquiler[0].costo}</p>
-    <p>Smoke: ${propiedades_alquiler[0].smoke ? "Si" : "No"}</p>
-    <p>Pets: ${propiedades_alquiler[0].pets ? "Si" : "No"}</p>
-</article>;`;
-}
-/* 
-propiedades_alquiler.forEach(function() => { */
+// Inicializar una variable para almacenar todas las tarjetas
+let contenido_alquiler = "";
+
+let countAlquiler = 0;
+let offsetAlquiler = Math.floor(
+  Math.random() * (propiedades_alquiler.length - 3)
+);
+
+// Recorrer el arreglo de propiedades
+propiedades_alquiler.forEach(function (propiedad, index) {
+  if (index < offsetAlquiler) {
+    return;
+  }
+  if (countAlquiler > 2) {
+    return;
+  }
+  countAlquiler++;
+
+  let smokeText = "";
+  let petsText = "";
+
+  // Condicional para smoke
+  if (propiedad.smoke) {
+    smokeText = `<p class="text-success">
+                  <i class="fas fa-smoking"></i> Permitido fumar
+                </p>`;
+  } else {
+    smokeText = `<p class="text-danger">
+      <i class="fas fa-smoking-ban"></i> No se permite fumar
+    </p>`;
+  }
+
+  // Condicional para pets
+  if (propiedad.pets) {
+    petsText = `<p class="text-success">
+      <i class="fas fa-paw"></i> Mascotas permitidas
+    </p>`;
+  } else {
+    petsText = `<p class="text-danger">
+      <i class="fas fa-ban"></i> No se permiten mascotas
+    </p>`;
+  }
+
+  contenido_alquiler += `
+<div class="col-md-4 mb-4">
+  <div class="card">
+    <img
+      src="${propiedad.src}"
+      class="card-img-top"
+      alt="${propiedad.nombre}"
+    />
+    <div class="card-body">
+      <h5 class="card-title">
+        ${propiedad.nombre}
+      </h5>
+      <p class="card-text">
+        ${propiedad.descripcion}
+      </p>
+      <p>
+        <i class="fas fa-map-marker-alt"></i> ${propiedad.ubicacion}
+      </p>
+      <p>
+        <i class="fas fa-bed"></i> ${propiedad.habitaciones} |
+        <i class="fas fa-bath"></i> ${propiedad.baños}
+      </p>
+      <p><i class="fas fa-dollar-sign"></i>${propiedad.costo}</p>
+      ${smokeText}
+      ${petsText}
+    </div>
+  </div>
+</div>`;
+});
+
+// Asignar todo el contenido generado al contenedor
+alquiler.innerHTML = contenido_alquiler;
+
+const venta = document.querySelector("#propiedades-venta");
+
+// Inicializar una variable para almacenar todas las tarjetas
+let contenido_venta = "";
+
+// Recorrer el arreglo de propiedades
+let countVenta = 0;
+let offsetVenta = Math.floor(Math.random() * (propiedades_venta.length - 3));
+
+propiedades_venta.forEach(function (propiedad, index) {
+  if (index < offsetVenta) {
+    return;
+  }
+  if (countVenta > 2) {
+    return;
+  }
+  countVenta++;
+
+  let smokeText = "";
+  let petsText = "";
+
+  // Condicional para smoke
+  if (propiedad.smoke) {
+    smokeText = `<p class="text-success">
+                  <i class="fas fa-smoking"></i> Permitido fumar
+                </p>`;
+  } else {
+    smokeText = `<p class="text-danger">
+      <i class="fas fa-smoking-ban"></i> No se permite fumar
+    </p>`;
+  }
+
+  // Condicional para pets
+  if (propiedad.pets) {
+    petsText = `<p class="text-success">
+      <i class="fas fa-paw"></i> Mascotas permitidas
+    </p>`;
+  } else {
+    petsText = `<p class="text-danger">
+      <i class="fas fa-ban"></i> No se permiten mascotas
+    </p>`;
+  }
+
+  contenido_venta += `
+<div class="col-md-4 mb-4">
+  <div class="card">
+    <img
+      src="${propiedad.src}"
+      class="card-img-top"
+      alt="${propiedad.nombre}"
+    />
+    <div class="card-body">
+      <h5 class="card-title">
+        ${propiedad.nombre}
+      </h5>
+      <p class="card-text">
+        ${propiedad.descripcion}
+      </p>
+      <p>
+        <i class="fas fa-map-marker-alt"></i> ${propiedad.ubicacion}
+      </p>
+      <p>
+        <i class="fas fa-bed"></i> ${propiedad.habitaciones} |
+        <i class="fas fa-bath"></i> ${propiedad.baños}
+      </p>
+      <p><i class="fas fa-dollar-sign"></i>${propiedad.costo}</p>
+      ${smokeText}
+      ${petsText}
+    </div>
+  </div>
+</div>`;
+});
+
+venta.innerHTML = contenido_venta;
