@@ -147,7 +147,7 @@ const propiedades_venta = [
   },
 ];
 
-const alquiler = document.querySelector("#propiedades-alquiler");
+const alquiler = document.getElementById("propiedades-alquiler");
 
 // Inicializar una variable para almacenar todas las tarjetas
 let contenido_alquiler = "";
@@ -225,7 +225,7 @@ propiedades_alquiler.forEach(function (propiedad, index) {
 // Asignar todo el contenido generado al contenedor
 alquiler.innerHTML = contenido_alquiler;
 
-const venta = document.querySelector("#propiedades-venta");
+const venta = document.getElementById("propiedades-venta");
 
 // Inicializar una variable para almacenar todas las tarjetas
 let contenido_venta = "";
@@ -299,3 +299,4 @@ propiedades_venta.forEach(function (propiedad, index) {
 });
 
 venta.innerHTML = contenido_venta;
+
